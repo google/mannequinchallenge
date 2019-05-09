@@ -9,9 +9,9 @@ class BaseOptions():
 
     def initialize(self):
         self.parser.add_argument('--input_nc', type=int, required=True, help='# of input image channels')
-        self.parser.add_argument('--simple_keypoints', type=int, required=True, help='which epoch to load? set to latest to use latest cached model')
-        self.parser.add_argument('--mode', type=str, required=True, help='which epoch to load? set to latest to use latest cached model')
-        self.parser.add_argument('--human_data_term', type=int, required=True, help='which epoch to load? set to latest to use latest cached model')
+        self.parser.add_argument('--simple_keypoints', type=int, default=0, help='which epoch to load? set to latest to use latest cached model')
+        self.parser.add_argument('--mode', type=str, default='Ours_Bilinear', help='which epoch to load? set to latest to use latest cached model')
+        self.parser.add_argument('--human_data_term', type=int, default=0, help='which epoch to load? set to latest to use latest cached model')
 
         self.parser.add_argument('--batchSize', type=int, default=8, help='input batch size')
         self.parser.add_argument('--loadSize', type=int, default=286, help='scale images to this size')

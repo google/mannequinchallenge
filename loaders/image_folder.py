@@ -931,7 +931,7 @@ class DAVISImageFolder(data.Dataset):
     def load_imgs(self, img_path):
         img = imread(img_path)
         img = np.float32(img)/255.0
-        img = transform.resize(img, (self.resized_width, self.resized_height))
+        img = transform.resize(img, (self.resized_height, self.resized_width))
 
         return img
 

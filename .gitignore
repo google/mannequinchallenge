@@ -1,2 +1,5 @@
 *__pycache__*
 *.swp
+checkpoints/*
+test_data/DAVIS*
+test_data/viz_predictions*
