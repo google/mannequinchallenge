@@ -7,7 +7,6 @@ import numpy as np
 import sys
 from torch.autograd import Function
 import math
-from scipy import misc
 import functools
 from torch.nn import init
 from torch.optim import lr_scheduler
@@ -15,7 +14,6 @@ from torch.optim import lr_scheduler
 ###############################################################################
 # Functions
 ###############################################################################
-VERSION = 4
 EPSILON = 1e-6
 
 

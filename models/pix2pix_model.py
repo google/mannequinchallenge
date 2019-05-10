@@ -3,18 +3,16 @@ import numpy as np
 import torch
 import os
 from torch.autograd import Variable
-from .base_model import BaseModel
+from models import base_model
 from models import networks
 import sys, traceback
 import h5py
 import os.path
-from scipy.misc import imsave
+from skimage.io import imsave
 from models import hourglass
 
 import torchvision.utils as vutils
 from torch.nn import init
-
-VERSION = 4
 
 
 # torch.manual_seed(1)
@@ -48,13 +46,13 @@ class HourglassVariant(torch.nn.Module):
     return pred_d, pred_confidence
 
 
-class Pix2PixModel(BaseModel):
+class Pix2PixModel(base_model.BaseModel):
 
   def name(self):
     return 'Pix2PixModel'
 
   def __init__(self, opt, _isTrain):
-    BaseModel.initialize(self, opt)
+    self.initialize(opt)
 
     self.mode = opt.mode
     self.num_input = opt.input_nc
@@ -605,6 +603,7 @@ class Pix2PixModel(BaseModel):
       disparity = disparity / np.max(disparity)
       disparity = np.tile(np.expand_dims(disparity, axis=-1), (1, 1, 3))
       saved_imgs = np.concatenate((saved_img, disparity), axis=1)
+      saved_imgs = (saved_imgs*255).astype(np.uint8)
 
       imsave(output_path, saved_imgs)
 
@@ -616,12 +615,8 @@ class Pix2PixModel(BaseModel):
 
   def save(self, label):
     self.save_network(self.netG, 'G', label, self.gpu_ids)
-    # self.save_network(self.net_, 'G', label, self.gpu_ids)
 
   def update_learning_rate(self):
-
     self.scheduler.step()
-    # for scheduler in self.schedulers:
-    # scheduler.step()
     lr = self.optimizer_G.param_groups[0]['lr']
     print('Current learning rate = %.7f' % lr)

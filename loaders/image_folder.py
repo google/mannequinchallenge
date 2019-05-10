@@ -10,8 +10,6 @@ import pickle
 import PIL
 import numpy as np
 import torch
-from scipy import misc
-from scipy.misc import imread
 from PIL import Image
 import os
 import math
@@ -20,7 +18,7 @@ import os.path
 import sys
 import traceback
 from skimage import transform
-#import cv2
+from skimage.io import imread
 
 from skimage.morphology import erosion
 from skimage.morphology import disk

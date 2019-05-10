@@ -7,7 +7,7 @@ import models.networks
 from options.train_options import TrainOptions
 import sys
 from loaders import data_loader
-from models.models import create_model
+from models import models
 import random
 import math
 
@@ -15,8 +15,6 @@ BATCH_SIZE = 1
 
 opt = TrainOptions().parse()  # set CUDA_VISIBLE_DEVICES before import torch
 
-root = '/'
-#img_dir = '/home/zhengqili/filestore/DAVIS/images/'
 video_list = 'test_data/test_davis_video_list.txt'
 
 isTrain = False
@@ -27,9 +25,7 @@ video_data_size = len(video_data_loader)
 print('========================= Video dataset #images = %d =========' %
       video_data_size)
 
-model = create_model(opt, isTrain)
-# model.switch_to_train()
-
+model = models.create_model(opt, isTrain)
 
 def test_video(model, dataset, dataset_size):
 
