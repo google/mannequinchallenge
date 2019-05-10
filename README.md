@@ -8,8 +8,8 @@ Moving People by Watching Frozen People](https://mannequin-depth.github.io/)."
 
 The code is based on PyTorch. The code has been tested with PyTorch 1.1 and Python 3.6. 
 
-We recommend setting up a `virtualenv`
-environment for installing PyTorch and the other necessary Python packages. The [TensorFlow installation
+We recommend setting up a `virtualenv` environment for installing PyTorch and
+the other necessary Python packages. The [TensorFlow installation
 guide](https://www.tensorflow.org/install/pip) may be helpful (follow steps 1
 and 2) or follow the `virtualenv` documentation.
 
@@ -27,7 +27,9 @@ The model checkpoints are stored on Google Cloud and may be retrieved by running
 
 ## Single-View Inference
 
-Our test set for single-view inference is the DAVIS dataset (cite). Download and unzip it by running
+Our test set for single-view inference is the [DAVIS
+2016](https://davischallenge.org/davis2016/code.html) dataset. Download and
+unzip it by running:
 
 ```
 (pytorch)$ ./fetch_davis_data.sh
@@ -39,11 +41,17 @@ Then run the DAVIS inference script:
 (pytorch)$ python test_davis_videos.py --input_nc=3
 ```
 
-The `input_nc` flag sets the number of input channels (here RGB) for the network to expect. Once the run completes, visualizations of the output should be available in `test_data/viz_predictions`.
+The `input_nc` flag sets the number of input channels (here RGB) for the network
+to expect. Once the run completes, visualizations of the output should be
+available in `test_data/viz_predictions`.
 
 ## Full Model Inference
 
-The full model described in the paper requires several additional inputs: the human segmenation mask, the depth-from-parallax, and (optionall) a human keypoint buffer. We provide a preprocessed version of the TUM RGBD data (cite) that includes these inputs. Download (~9GB) and unzip it using the script:
+The full model described in the paper requires several additional inputs: the
+human segmentation mask, the depth-from-parallax buffer, and (optionally) a
+human keypoint buffer. We provide a preprocessed version of the [TUM
+RGBD](https://vision.in.tum.de/data/datasets/rgbd-dataset) dataset that includes
+these inputs. Download (~9GB) and unzip it using the script:
 
 ```
 (pytorch)$ ./fetch_tum_data.sh
