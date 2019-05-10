@@ -10,7 +10,7 @@ fineSize: 256
 gpu_ids: [0, 1, 2, 3]
 human_data_term: 0
 identity: 0.0
-input_nc: 3
+input_nc: 7
 isTrain: True
 lambda_A: 10.0
 lambda_B: 10.0

@@ -26,8 +26,6 @@ import pickle
 import PIL
 import numpy as np
 import torch
-from scipy import misc
-from scipy.misc import imread
 from PIL import Image
 import os
 import math
@@ -36,7 +34,7 @@ import os.path
 import sys
 import traceback
 from skimage import transform
-#import cv2
+from skimage.io import imread
 
 from skimage.morphology import erosion
 from skimage.morphology import disk
@@ -947,7 +945,7 @@ class DAVISImageFolder(data.Dataset):
     def load_imgs(self, img_path):
         img = imread(img_path)
         img = np.float32(img)/255.0
-        img = transform.resize(img, (self.resized_width, self.resized_height))
+        img = transform.resize(img, (self.resized_height, self.resized_width))
 
         return img
 

@@ -77,7 +77,7 @@ class DAVISDataLoader(base_data_loader.BaseDataLoader):
 
 
 class TUMDataLoader(base_data_loader.BaseDataLoader):
-    def __init__(self, opt, img_dir, list_path, is_train, _batch_size, num_threads):
+    def __init__(self, opt, list_path, is_train, _batch_size, num_threads):
         dataset = image_folder.TUMImageFolder(opt=opt, list_path =list_path)
         self.data_loader = torch.utils.data.DataLoader(dataset, 
             batch_size=_batch_size, shuffle=False, num_workers=int(num_threads))
