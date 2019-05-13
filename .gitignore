@@ -1,5 +1,6 @@
 *__pycache__*
 *.swp
+.vscode
 checkpoints/*
 test_data/DAVIS*
 test_data/tum*
