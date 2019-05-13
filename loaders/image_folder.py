@@ -14,12 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 '''
 
-################################################################################
-# Code from
-# https://github.com/pytorch/vision/blob/master/torchvision/datasets/folder.py
-# Modified the original code so that it also loads images from the current
-# directory as well as the subdirectories
-################################################################################
 import h5py
 import torch.utils.data as data
 import numpy as np
@@ -172,8 +166,6 @@ class TUMImageFolder(data.Dataset):
                 geometric_e_distance, (img.shape[0], img.shape[1]))
             e_likelihood = np.maximum(
                 0.0, 1.0 - (geometric_e_distance**2)/(e_t**2))
-            # remove moving objects
-            # epipolar_mask = np.float32(geometric_e_distance < e_t**2)
 
             lr_mask = lr_error < lr_t
             angle_mask = angle_prob > pa_t
@@ -206,7 +198,6 @@ class TUMImageFolder(data.Dataset):
         depth_gt = train_data['depth_gt']
         gt_mask = train_data['gt_mask']
         input_confidence = train_data['input_confidence']
-        # full_flow = train_data['full_flow']
         env_mask = train_data['env_mask']
         pp_depth = train_data['pp_depth']
         keypoints_img = train_data['keypoints_img']

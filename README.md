@@ -38,11 +38,10 @@ unzip it by running:
 Then run the DAVIS inference script:
 
 ```
-(pytorch)$ python test_davis_videos.py --input_nc=3
+(pytorch)$ python test_davis_videos.py --input=single-view
 ```
 
-The `input_nc` flag sets the number of input channels (here RGB) for the network
-to expect. Once the run completes, visualizations of the output should be
+Once the run completes, visualizations of the output should be
 available in `test_data/viz_predictions`.
 
 ## Full Model Inference
@@ -60,10 +59,12 @@ these inputs. Download (~9GB) and unzip it using the script:
 To reproduce the numbers in Table 2 of the paper, run:
 
 ```
-(pytorch)$ python test_tum.py --input_nc=7
+(pytorch)$ python test_tum.py --input=single_view
+(pytorch)$ python test_tum.py --input=two_view
+(pytorch)$ python test_tum.py --input=two_view_k
 ```
 
-The script prints running averages of the various error metrics as it runs. When the script completes, the final error metrics are shown.
+Where `single_view` is the variant _I_ from the paper, `two_view` is the variant _IDCM_, and `two_view_k` is the variant _IDCMK_. The script prints running averages of the various error metrics as it runs. When the script completes, the final error metrics are shown.
 
 
 ## Acknowledgements

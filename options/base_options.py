@@ -26,7 +26,10 @@ class BaseOptions():
 
     def initialize(self):
         self.parser.add_argument(
-            '--input_nc', type=int, required=True, help='# of input image channels')
+            '--input', type=str, required=True, 
+            choices=['single_view', 'two_view', 'two_view_k'],
+            help='type of input. One of "single_view", "two_view" (no human keypoints),'
+            '"two_view_k" (with human keypoints)')
         self.parser.add_argument('--simple_keypoints', type=int, default=0,
                                  help='which epoch to load? set to latest to use latest cached model')
         self.parser.add_argument('--mode', type=str, default='Ours_Bilinear',
@@ -46,19 +49,14 @@ class BaseOptions():
             '--ngf', type=int, default=64, help='# of gen filters in first conv layer')
         self.parser.add_argument(
             '--ndf', type=int, default=64, help='# of discrim filters in first conv layer')
-        # self.parser.add_argument('--which_model_netD', type=str, default='basic', help='selects model to use for netD')
         self.parser.add_argument('--which_model_netG', type=str,
                                  default='unet_256', help='selects model to use for netG')
-        # self.parser.add_argument('--n_layers_D', type=int, default=3, help='only used if which_model_netD==n_layers')
         self.parser.add_argument(
             '--gpu_ids', type=str, default='0,1,2,3', help='gpu ids: e.g. 0  0,1,2, 0,2')
         self.parser.add_argument('--name', type=str, default='test_local',
                                  help='name of the experiment. It decides where to store samples and models')
-        # self.parser.add_argument('--align_data', action='store_true',
-        # help='if True, the datasets are loaded from "test" and "train" directories and the data pairs are aligned')
         self.parser.add_argument('--model', type=str, default='pix2pix',
                                  help='chooses which model to use. cycle_gan, one_direction_test, pix2pix, ...')
-        # self.parser.add_argument('--which_direction', type=str, default='AtoB', help='AtoB or BtoA')
         self.parser.add_argument(
             '--nThreads', default=2, type=int, help='# threads for loading data')
         self.parser.add_argument('--checkpoints_dir', type=str,

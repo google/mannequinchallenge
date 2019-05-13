@@ -71,7 +71,14 @@ class Pix2PixModel(base_model.BaseModel):
         self.initialize(opt)
 
         self.mode = opt.mode
-        self.num_input = opt.input_nc
+        if opt.input == 'single_view':
+            self.num_input = 3
+        elif opt.input == 'two_view':
+            self.num_input = 6
+        elif opt.input == 'two_view_k':
+            self.num_input = 7
+        else:
+            raise ValueError("Unknown input type %s" % opt.input)
 
         if self.mode == 'Ours_Bilinear':
             print(
