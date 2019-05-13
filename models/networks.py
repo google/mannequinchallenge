@@ -16,12 +16,10 @@ limitations under the License.
 
 import torch
 import torch.nn as nn
-import torch.sparse
-from torch.autograd import Variable
+import torch.optim as optim
+import torch.autograd as autograd
 import numpy as np
 import functools
-from torch.nn import init
-from torch.optim import lr_scheduler
 
 ###############################################################################
 # Functions
@@ -61,21 +59,21 @@ def init_weights(net, init_type='normal', gain=0.02):
         if hasattr(m, 'weight') and (classname.find('Conv') != -1 or
                                      classname.find('Linear') != -1):
             if init_type == 'normal':
-                init.normal_(m.weight.data, 0.0, gain)
+                nn.init.normal_(m.weight.data, 0.0, gain)
             elif init_type == 'xavier':
-                init.xavier_normal_(m.weight.data, gain=gain)
+                nn.init.xavier_normal_(m.weight.data, gain=gain)
             elif init_type == 'kaiming':
-                init.kaiming_normal_(m.weight.data, a=0, mode='fan_in')
+                nn.init.kaiming_normal_(m.weight.data, a=0, mode='fan_in')
             elif init_type == 'orthogonal':
-                init.orthogonal_(m.weight.data, gain=gain)
+                nn.init.orthogonal_(m.weight.data, gain=gain)
             else:
                 raise NotImplementedError(
                     'initialization method [%s] is not implemented' % init_type)
             if hasattr(m, 'bias') and m.bias is not None:
-                init.constant_(m.bias.data, 0.0)
+                nn.init.constant_(m.bias.data, 0.0)
         elif classname.find('BatchNorm2d') != -1:
-            init.normal_(m.weight.data, 1.0, gain)
-            init.constant_(m.bias.data, 0.0)
+            nn.init.normal_(m.weight.data, 1.0, gain)
+            nn.init.constant_(m.bias.data, 0.0)
 
     print('initialize network with %s' % init_type)
     net.apply(init_func)
@@ -89,12 +87,12 @@ def get_scheduler(optimizer, opt):
                              opt.niter) / float(opt.niter_decay + 1)
             return lr_l
 
-        scheduler = lr_scheduler.LambdaLR(optimizer, lr_lambda=lambda_rule)
+        scheduler = optim.lr_scheduler.LambdaLR(optimizer, lr_lambda=lambda_rule)
     elif opt.lr_policy == 'step':
-        scheduler = lr_scheduler.StepLR(
+        scheduler = optim.lr_scheduler.StepLR(
             optimizer, step_size=opt.lr_decay_epoch, gamma=0.5)
     elif opt.lr_policy == 'plateau':
-        scheduler = lr_scheduler.ReduceLROnPlateau(
+        scheduler = optim.lr_scheduler.ReduceLROnPlateau(
             optimizer, mode='min', factor=0.2, threshold=0.01, patience=5)
     else:
         return NotImplementedError('learning rate policy [%s] is not implemented',
@@ -160,10 +158,10 @@ class LaplacianLayer(nn.Module):
         else:
             x = input.unsqueeze(0).unsqueeze(0)
         x_nom = torch.nn.functional.conv2d(
-            input=x, weight=Variable(self.w_nom), stride=1, padding=0)
+            input=x, weight=autograd.Variable(self.w_nom), stride=1, padding=0)
         if do_normalize:
             x_den = torch.nn.functional.conv2d(
-                input=x, weight=Variable(self.w_den), stride=1, padding=0)
+                input=x, weight=autograd.Variable(self.w_den), stride=1, padding=0)
             # x_den = x.std() + 1e-5
             x = (x_nom.abs() / x_den)
         else:
@@ -318,7 +316,7 @@ class JointLoss(nn.Module):
                               gt_d.data) / (gt_d.data + EPSILON)
             error = torch.exp(-error * 2.0)
 
-            error_var = Variable(error, requires_grad=False)
+            error_var = autograd.Variable(error, requires_grad=False)
             u_loss = mask * torch.abs(pred_confidence - error_var)
             confidence_term = torch.sum(u_loss) / N
         else:
@@ -543,16 +541,16 @@ class JointLoss(nn.Module):
         input_3 = input_2[:, :, ::2, ::2]
         input_4 = input_3[:, :, ::2, ::2]
 
-        d_gt_0 = Variable(targets['depth_gt'].cuda(), requires_grad=False)
+        d_gt_0 = autograd.Variable(targets['depth_gt'].cuda(), requires_grad=False)
         log_d_gt_0 = torch.log(d_gt_0)
         log_d_gt_1 = log_d_gt_0[:, ::2, ::2]
         log_d_gt_2 = log_d_gt_1[:, ::2, ::2]
         log_d_gt_3 = log_d_gt_2[:, ::2, ::2]
         log_d_gt_4 = log_d_gt_3[:, ::2, ::2]
 
-        gt_mask = Variable(targets['gt_mask'].cuda(), requires_grad=False)
+        gt_mask = autograd.Variable(targets['gt_mask'].cuda(), requires_grad=False)
         human_mask = 1.0 - \
-            Variable(targets['env_mask'].cuda(), requires_grad=False)
+            autograd.Variable(targets['env_mask'].cuda(), requires_grad=False)
         human_gt_mask = human_mask * gt_mask
 
         mask_0 = gt_mask
