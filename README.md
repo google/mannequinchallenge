@@ -4,6 +4,8 @@ This repository contains inference code for models trained on the Mannequin
 Challenge dataset introduced in the CVPR 2019 paper "[Learning the Depths of
 Moving People by Watching Frozen People](https://mannequin-depth.github.io/)."
 
+This is not an officially supported Google product.
+
 ## Setup
 
 The code is based on PyTorch. The code has been tested with PyTorch 1.1 and Python 3.6. 
