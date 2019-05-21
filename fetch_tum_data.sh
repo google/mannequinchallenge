@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+mkdir -p test_data
 cd test_data
 curl -L https://storage.googleapis.com/mannequinchallenge-data/tumtest/tum_hdf5.tgz -o tum_hdf5.tgz
 tar -xvzf tum_hdf5.tgz

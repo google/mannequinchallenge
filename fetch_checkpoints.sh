@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+mkdir -p checkpoints/test_local
 curl -L https://storage.googleapis.com/mannequinchallenge-data/checkpoints/best_depth_Ours_Bilinear_inc_3_net_G.pth -o checkpoints/test_local/best_depth_Ours_Bilinear_inc_3_net_G.pth
 curl -L https://storage.googleapis.com/mannequinchallenge-data/checkpoints/best_depth_Ours_Bilinear_inc_6_net_G.pth -o checkpoints/test_local/best_depth_Ours_Bilinear_inc_6_net_G.pth
 curl -L https://storage.googleapis.com/mannequinchallenge-data/checkpoints/best_depth_Ours_Bilinear_inc_7_net_G.pth -o checkpoints/test_local/best_depth_Ours_Bilinear_inc_7_net_G.pth
