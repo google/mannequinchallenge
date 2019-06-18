@@ -40,7 +40,7 @@ unzip it by running:
 Then run the DAVIS inference script:
 
 ```
-(pytorch)$ python test_davis_videos.py --input=single-view
+(pytorch)$ python test_davis_videos.py --input=single_view
 ```
 
 Once the run completes, visualizations of the output should be
