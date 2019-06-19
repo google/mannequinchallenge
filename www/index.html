@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+Copyright 2018 Google LLC
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<meta charset=utf-8>
+<link rel=stylesheet href="style.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+
+<script src="ga.js"></script>
+<title>MannequinChallenge: A Dataset of Frozen People</title>
+
+<!-- Top  -->
+<div class=top>
+  <span class=title>MannequinChallenge</span>
+  <div class=right>
+    <a href=index.html>Home</a>
+    <a href=download.html>Download</a>
+    <a href=people.html>Team</a>
+  </div>
+</div>
+
+<div class=alt-content>
+  <br>
+  <br>
+	  <div class="textblock" align="center">
+		   <h1>MannequinChallenge</h1>
+		   <h4>A Dataset of Frozen People</h4>
+		   <p>&nbsp;</p>
+    </div>
+  <div class="textblock">
+  <div class="pc">
+    <div class="carousel-images" data-slick='{"slidesToShow": 5, 
+                                                "slidesToScroll": 5,
+                                                "autoplay": true,
+                                                "autoplaySpeed": 2000}'> <a href="https://youtu.be/EamBNuHV_hY?t=10s"><img src="thumbnails/EamBNuHV_hY.jpg" /> </a> <a href="https://youtu.be/n0wvCtS7xvA?t=156s"><img src="thumbnails/n0wvCtS7xvA&t.jpg" /> </a> <a href="https://youtu.be/YfaiLEOOrko?t=157s"><img src="thumbnails/YfaiLEOOrko&t.jpg" /> </a> <a href="https://youtu.be/9lzzVP9GXLA?t=95s"><img src="thumbnails/9lzzVP9GXLA.jpg" /> </a> <a 
+												href="https://youtu.be/IggIqNXfu_U?t=47s"><img src="thumbnails/IggIqNXfu_U.jpg" /> </a> <a 
+												href="https://youtu.be/34HRv83zyDg?t=60s"><img src="thumbnails/34HRv83zyDg.jpg" /> </a> <a 
+		                                        href="https://youtu.be/8V9rtN8ofDM?t=70s"><img src="thumbnails/8V9rtN8ofDM.jpg" /> </a> <a 
+												href="https://youtu.be/Q6jJjakGzBw?t=116s"><img src="thumbnails/Q6jJjakGzBw&t.jpg" /> <a 						href="https://youtu.be/_EPDu6TscEk?t=7s"><img src="thumbnails/_EPDu6TscEk.jpg" /> <a 							href="https://youtu.be/MjcQB6vQ-L0?t=53s"><img src="thumbnails/MjcQB6vQ-L0.jpg" /> <a							
+												href="https://youtu.be/OI_7dCcsUVk?t=6s"><img src="thumbnails/OI_7dCcsUVk.jpg" /> <a
+												href="https://youtu.be/R4fyRpxFpcM?t=74s"><img src="thumbnails/R4fyRpxFpcM.jpg" /> <a
+																															
+												</a></div>
+  </div>
+    <p>MannequinChallenge is a dataset of video clips of people imitating mannequins, i.e., freezing in diverse, natural poses, while a hand-held camera tours the scene. The dataset comprises of more than <strong>170K</strong> frames and corresponding camera poses derived from about <strong>2,000</strong> YouTube videos. The camera poses were computed using SLAM and bundle
+	adjustment algorithms.    
+    <p>For more details on how we created the dataset see our CVPR 2019 paper, <a href="https://ai.google/research/pubs/pub48104/">Learning the Depths
+	  of Moving People by Watching Frozen People</a>. The MannequinChallenge dataset was used to train a deep network model for predicting dense depth maps from ordinary videos where both the camera and the people in the scene are freely moving.  Because people are stationary and captured from different viewpoints, Multi-View Stereo (MVS) was used to estimate dense depth maps, which serveed as supervision during training.               
+    <p>This dataset is
+			intended to aid researchers in their work on view synthesis, 3D computer
+			vision, and beyond.
+		
+    <p align="center">Ready to start using MannequinChallenge?
+    <p class=centered><a href="download.html"><button class="button">Download Dataset</button></a>
+    <a href="http://github.com/google/mannequinchallenge"><button class="button">Download Code</button></a>
+  </div>
+ </div>
+</div>
+<div class=bottom>
+  <img src="https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_dark_color_42x16dp.png" alt="Google">
+  <div class=right>
+    <a href="https://www.google.com/">Google</a>
+    <a href="https://www.google.com/intl/en/about/">About Google</a>
+    <a href="https://www.google.com/intl/en/policies/privacy/">Privacy</a>
+    <a href="https://www.google.com/intl/en/policies/terms/">Terms</a>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    $('.carousel-images').slick();
+  });
+</script>
