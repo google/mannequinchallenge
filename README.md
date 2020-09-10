@@ -74,11 +74,11 @@ Where `single_view` is the variant _I_ from the paper, `two_view` is the variant
 If you find the code or results useful, please cite the following paper:
 
 ```
-@article{li2019learning,
+@inproceedings{li2019learning,
   title={Learning the Depths of Moving People by Watching Frozen People},
   author={Li, Zhengqi and Dekel, Tali and Cole, Forrester and Tucker, Richard
     and Snavely, Noah and Liu, Ce and Freeman, William T},
-  journal={arXiv preprint arXiv:1904.11111},
+  booktitle={Proc. Computer Vision and Pattern Recognition (CVPR)},
   year={2019}
 }
 ```
